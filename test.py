@@ -35,8 +35,13 @@ def write_input(s):
 def test_speed():
     write_input("123 " * 10000)
     t1 = time()
-    main(out=True)
-    print(time() - t1)
+    main(out=False)
+    print("Time needed", time() - t1)
+
+
+def test_read():
+    write_input("1 2 3 4")
+    assert read() == [1, 2, 3, 4]
 
 
 def test():
@@ -49,6 +54,8 @@ def test():
     test_product()
     print("Passed find_product")
     test_speed()
+    test_read()
+    print("Passed speed")
 
 
 if __name__ == '__main__':
