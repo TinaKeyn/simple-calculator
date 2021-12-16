@@ -22,7 +22,7 @@ def test_sum():
 
 
 def test_product():
-    assert find_product([4, 3, 2, 1]) == 23
+    assert find_product([4, 3, 2, 1]) == 24
     assert find_product([1, 3, 2, 0]) == 0
     assert find_product([1, 1, 1, 1]) == 1
 
