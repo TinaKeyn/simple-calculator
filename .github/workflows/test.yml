@@ -19,9 +19,17 @@ jobs:
     - name: Run tests
       run: |
         python test.py
-    - name: send telegram message on push
+    - name: Send telegram on pass
+      if: ${{ success() }}
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: Commit done
+        message: Tests passed
+    - name: Send telegram on fail
+      if: ${{ failure() }}
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: Failed ${{ job.status }}
