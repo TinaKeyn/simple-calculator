@@ -27,23 +27,35 @@ def find_sum(lst):
 def find_product(lst):
     prod = 1
     for e in lst:
-        prod *= e
+        try:
+            prod *= e
+        except OverflowError:
+            return
 
     return prod
 
 
-def main(out=True):
+def read():
     with open("input.txt", "r") as f:
         lst_inp = list(map(int, f.readline().split()))
-        mn = find_min(lst_inp)
-        mx = find_max(lst_inp)
-        sm = find_sum(lst_inp)
-        prod = find_product(lst_inp)
-        if out:
-            print("Minimum:", mn)
-            print("Maximum:", mx)
-            print("Sum:", sm)
-            print("Product:", prod)
+    return lst_inp
+
+
+def run(lst_inp, out=True):
+    mn = find_min(lst_inp)
+    mx = find_max(lst_inp)
+    sm = find_sum(lst_inp)
+    prod = find_product(lst_inp)
+    if out:
+        print("Minimum:", mn)
+        print("Maximum:", mx)
+        print("Sum:", sm)
+        print("Product:", prod)
+
+
+def main(out=True):
+    lst_inp = read()
+    run(lst_inp, out)
 
 
 if __name__ == '__main__':
